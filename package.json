@@ -1,0 +1,16 @@
+{
+  "name": "webpack-pt",
+  "version": "1.0.0",
+  "description": "Vuejs based application",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "dev": "npm run development",
+    "prod": "npm run production"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "jquery": "^1.9.1"
+  }
+}
