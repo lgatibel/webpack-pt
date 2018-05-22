@@ -5,10 +5,13 @@
   "main": "main.js",
   "private": true,
   "scripts": {
-    "dev": "npm run development",
-    "prod": "npm run production"
+    "dev": "cross-env NODE_ENV=development webpack",
+    "prod": "cross-env NODE_ENV=production webpack"
   },
   "devDependencies": {
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
   },

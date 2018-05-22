@@ -1,27 +1,39 @@
 const path = require('path');
-const webpack = require('webpack');
+const dev = process.env.NODE_ENV === "development";
 
-let config ={
+let config = {
+    mode: (dev)? 'development': 'production',
+
     entry: "./src/app.js",
+
     output: {
         path: path.resolve(__dirname, "./public"),
         filename: "./bundle.js"
     },
+
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            // (the commons chunk name)
-          
-            filename: "commons.js",
-            // (the filename of the commons chunk)
-          
-            // minChunks: 3,
-            // (Modules must be shared between 3 entries)
-          
-            // chunks: ["pageA", "pageB"],
-            // (Only use these entries)
-          })
-    ]
+    ],
+
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    },
+
+    module: {
+        rules: [
+          {
+            test: /\.css$/,
+            use: [ 'style-loader', 'css-loader' ]
+          }
+        ]
+      }
 }
 
 module.exports = config;
